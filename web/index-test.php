@@ -11,6 +11,10 @@ defined('YII_ENV') or define('YII_ENV', 'test');
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 
+// Looing for .env at the root directory
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
 $config = require __DIR__ . '/../config/test.php';
 
 (new yii\web\Application($config))->run();
