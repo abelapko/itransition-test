@@ -3,6 +3,7 @@
 namespace app\entities;
 
 use yii\db\ActiveRecord;
+use Decimal\Decimal;
 
 /**
  * @property-read int|null intProductDataId null if record didn't save to DB yet
@@ -11,7 +12,8 @@ use yii\db\ActiveRecord;
  * @property-read string strProductCode
  * @property-read string|null dtmAdded
  * @property-read string|null dtmDiscontinued
- * @property-read string stmTimestamp
+ * @property-read int intStockLevel
+ * @property-read Decimal decPrice
  */
 class Product extends ActiveRecord
 {
@@ -69,5 +71,25 @@ class Product extends ActiveRecord
     public function getCode(): string
     {
         return $this->strProductCode;
+    }
+
+    public function setStockLevel(int $value): void
+    {
+        $this->intStockLevel = $value;
+    }
+
+    public function getStockLevel(): int
+    {
+        return $this->intStockLevel;
+    }
+
+    public function setPrice(Decimal $value): void
+    {
+        $this->decPrice = $value;
+    }
+
+    public function getPrice(): Decimal
+    {
+        return new Decimal($this->decPrice);
     }
 }
