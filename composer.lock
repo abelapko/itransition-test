@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ada14d1befa572153bc9eb1659e0618",
+    "content-hash": "cef726e0b936f849fd76f9d61e05f358",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -532,6 +532,101 @@
                 "source": "https://github.com/paragonie/random_compat"
             },
             "time": "2022-06-19T18:08:39+00:00"
+        },
+        {
+            "name": "php-decimal/php-decimal",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-decimal/php-decimal.git",
+                "reference": "f69b7d65a64bedf8053a459c20a1d5e9103cfbf0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-decimal/php-decimal/zipball/f69b7d65a64bedf8053a459c20a1d5e9103cfbf0",
+                "reference": "f69b7d65a64bedf8053a459c20a1d5e9103cfbf0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-decimal": "^1.1",
+                "php": ">=7.0.0",
+                "php-decimal/stubs": "^1.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Decimal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rudi Theunissen",
+                    "email": "rtheunissen@php.net"
+                }
+            ],
+            "description": "Correctly-rounded arbitrary precision decimal floating point",
+            "keywords": [
+                "decimal",
+                "math",
+                "number",
+                "precision"
+            ],
+            "support": {
+                "issues": "https://github.com/php-decimal/php-decimal/issues",
+                "source": "https://github.com/php-decimal/php-decimal/tree/master"
+            },
+            "time": "2018-11-20T20:50:10+00:00"
+        },
+        {
+            "name": "php-decimal/stubs",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-decimal/stubs.git",
+                "reference": "168bb0d58bb398d7da739da0da99df2a9e1fc773"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-decimal/stubs/zipball/168bb0d58bb398d7da739da0da99df2a9e1fc773",
+                "reference": "168bb0d58bb398d7da739da0da99df2a9e1fc773",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Decimal\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rudi Theunissen",
+                    "email": "rtheunissen@php.net"
+                }
+            ],
+            "description": "IDE and static analysis helper for the decimal extension",
+            "keywords": [
+                "decimal",
+                "math",
+                "number",
+                "precision"
+            ],
+            "support": {
+                "issues": "https://github.com/php-decimal/stubs/issues",
+                "source": "https://github.com/php-decimal/stubs/tree/v1.1.0"
+            },
+            "time": "2018-11-20T20:48:40+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -5805,7 +5900,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "vlucas/phpdotenv": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
