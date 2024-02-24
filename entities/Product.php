@@ -70,6 +70,11 @@ class Product extends ActiveRecord
         }
     }
 
+    public static function hasByCode(string $code): bool
+    {
+        return !! self::findOne(['strProductCode' => $code]);
+    }
+
     public function setId(int $value): void
     {
         $this->intProductDataId = $value;
