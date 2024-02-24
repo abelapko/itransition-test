@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\BaseConsole;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -23,6 +25,14 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+					'class' => 'pahanini\log\ConsoleTarget',
+                    'categories' => ['application'],
+                    'color' => [
+                        'warning' => BaseConsole::BG_YELLOW,
+                        'error' => BaseConsole::BG_RED,
+                    ]
+				],
             ],
         ],
         'db' => $db,

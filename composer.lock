@@ -4,8 +4,53 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7647b9eb881b3f596719cd0f8d65e50",
+    "content-hash": "63b060da4197932d180788c926b0ffab",
     "packages": [
+        {
+            "name": "alexeevdv/yii2-psr-log-adapter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexeevdv/yii2-psr-log-adapter.git",
+                "reference": "b865b9a8e0bf2d0621eb8030057342459890b5fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexeevdv/yii2-psr-log-adapter/zipball/b865b9a8e0bf2d0621eb8030057342459890b5fc",
+                "reference": "b865b9a8e0bf2d0621eb8030057342459890b5fc",
+                "shasum": ""
+            },
+            "require": {
+                "psr/log": "^1.0",
+                "yiisoft/yii2": "^2.0"
+            },
+            "require-dev": {
+                "codeception/codeception": "^2.4",
+                "yiisoft/yii2-coding-standards": "^2.0"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "alexeevdv\\yii\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmitry V. Alexeev",
+                    "email": "mail@alexeevdv.ru"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/alexeevdv/yii2-psr-log-adapter/issues",
+                "source": "https://github.com/alexeevdv/yii2-psr-log-adapter/tree/1.0.1"
+            },
+            "time": "2019-03-19T17:51:57+00:00"
+        },
         {
             "name": "bower-asset/bootstrap",
             "version": "v5.3.2",
@@ -561,6 +606,50 @@
                 }
             ],
             "time": "2022-01-04T00:13:07+00:00"
+        },
+        {
+            "name": "pahanini/yii2-consolelog",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pahanini/yii2-consolelog.git",
+                "reference": "42cdc34d80e62579ba1a3e7812b018409410424f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pahanini/yii2-consolelog/zipball/42cdc34d80e62579ba1a3e7812b018409410424f",
+                "reference": "42cdc34d80e62579ba1a3e7812b018409410424f",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "pahanini\\log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Tetyaev",
+                    "email": "pahanini@gmail.com"
+                }
+            ],
+            "description": "Dumps log to console",
+            "homepage": "https://github.com/pahanini/yii2-consolelog",
+            "keywords": [
+                "console",
+                "log",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/pahanini/yii2-consolelog/issues",
+                "source": "https://github.com/pahanini/yii2-consolelog/tree/master"
+            },
+            "time": "2024-02-12T04:21:12+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -6104,7 +6193,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "vlucas/phpdotenv": 20,
-        "php-decimal/php-decimal": 20
+        "php-decimal/php-decimal": 20,
+        "alexeevdv/yii2-psr-log-adapter": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
