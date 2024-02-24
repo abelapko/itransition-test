@@ -4,6 +4,7 @@ use yii\helpers\BaseConsole;
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$container = require __DIR__ . '/container.php';
 
 $config = [
     'id' => 'basic-console',
@@ -15,6 +16,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
+    'container' => $container,
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
