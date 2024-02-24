@@ -9,7 +9,13 @@ use yii\db\ActiveRecord;
 use Decimal\Decimal;
 
 /**
+ * @property string $name
+ * @property string $description
+ * @property string $code
  * @property DateTime|null $discontinuedDate
+ * @property int $stockLevel
+ * @property Decimal $price
+ *
  * @property-read int|null intProductDataId null if record didn't save to DB yet
  * @property-read string strProductName
  * @property-read string strProductDesc
