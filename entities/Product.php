@@ -6,6 +6,7 @@ use yii\db\ActiveRecord;
 use Decimal\Decimal;
 
 /**
+ * @property DateTime|null $discontinuedDate
  * @property-read int|null intProductDataId null if record didn't save to DB yet
  * @property-read string strProductName
  * @property-read string strProductDesc
@@ -71,6 +72,18 @@ class Product extends ActiveRecord
     public function getCode(): string
     {
         return $this->strProductCode;
+    }
+
+    public function setDiscontinuedDate(?DateTime $value): void
+    {
+        $this->dtmDiscontinued = $value ? $value->format('Y-m-d H:i:s') : null;
+    }
+
+    public function getDiscontinuedDate(): ?DateTime
+    {
+        return $this->dtmDiscontinued
+            ? DateTime::createFromFormat('Y-m-d H:i:s', $this->dtmDiscontinued)
+            : null;
     }
 
     public function setStockLevel(int $value): void
