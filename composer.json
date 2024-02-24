@@ -26,7 +26,8 @@
         "psr/event-dispatcher": "1.0.0",
         "yiisoft/event-dispatcher": "^1.0",
         "alexeevdv/yii2-psr-log-adapter": "dev-master",
-        "pahanini/yii2-consolelog": "dev-master"
+        "pahanini/yii2-consolelog": "dev-master",
+        "codedungeon/php-cli-colors": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "63b060da4197932d180788c926b0ffab",
+    "content-hash": "e7990f7b8524a808c2da53b999a6a8bf",
     "packages": [
         {
             "name": "alexeevdv/yii2-psr-log-adapter",
@@ -205,6 +205,54 @@
                 "source": "https://github.com/cebe/markdown"
             },
             "time": "2020-02-26T01:55:18+00:00"
+        },
+        {
+            "name": "codedungeon/php-cli-colors",
+            "version": "1.12.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mikeerickson/php-cli-colors.git",
+                "reference": "e346156f75717140a3dd622124d2ec686aa7ff8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mikeerickson/php-cli-colors/zipball/e346156f75717140a3dd622124d2ec686aa7ff8e",
+                "reference": "e346156f75717140a3dd622124d2ec686aa7ff8e",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Codedungeon\\PHPCliColors\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike Erickson",
+                    "email": "codedungeon@gmail.com"
+                }
+            ],
+            "description": "Liven up you PHP Console Apps with standard colors",
+            "homepage": "https://github.com/mikeerickson/php-cli-colors",
+            "keywords": [
+                "color",
+                "colors",
+                "composer",
+                "package",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/mikeerickson/php-cli-colors/issues",
+                "source": "https://github.com/mikeerickson/php-cli-colors/tree/1.12.2"
+            },
+            "time": "2021-01-05T04:48:27+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -6194,7 +6242,8 @@
     "stability-flags": {
         "vlucas/phpdotenv": 20,
         "php-decimal/php-decimal": 20,
-        "alexeevdv/yii2-psr-log-adapter": 20
+        "alexeevdv/yii2-psr-log-adapter": 20,
+        "pahanini/yii2-consolelog": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
