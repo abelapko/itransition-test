@@ -14,7 +14,7 @@ use Decimal\Decimal;
  * @property-read string|null dtmAdded
  * @property-read string|null dtmDiscontinued
  * @property-read int intStockLevel
- * @property-read Decimal decPrice
+ * @property-read string decPrice
  */
 class Product extends ActiveRecord
 {
@@ -98,7 +98,7 @@ class Product extends ActiveRecord
 
     public function setPrice(Decimal $value): void
     {
-        $this->decPrice = $value;
+        $this->decPrice = $value->toString();
     }
 
     public function getPrice(): Decimal
