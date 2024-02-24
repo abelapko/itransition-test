@@ -2,6 +2,9 @@
 
 namespace app\entities;
 
+use DateTime;
+use DomainException;
+use TypeError;
 use yii\db\ActiveRecord;
 use Decimal\Decimal;
 
@@ -32,6 +35,33 @@ class Product extends ActiveRecord
     public static function tableName(): string
     {
         return 'tblProductData';
+    }
+
+    public function rules(): array
+    {
+        return [
+            [['strProductName', 'strProductDesc', 'strProductCode', 'intStockLevel', 'decPrice'], 'required'],
+            ['strProductName', 'string', 'max' => 50],
+            ['strProductDesc', 'string', 'max' => 255],
+            ['strProductCode', 'string', 'max' => 10],
+            ['intStockLevel', 'integer', 'min' => 0],
+            ['decPrice', 'validatePrice'],
+        ];
+    }
+
+    public function validatePrice($attribute): void
+    {
+        $value = $this->$attribute;
+        try {
+            $valueDec = new Decimal($value);
+        } catch (TypeError|DomainException $e) {
+            $this->addError($attribute, $e->getMessage());
+            return;
+        }
+
+        if ($valueDec < 0) {
+            $this->addError($attribute, "Price '$valueDec' can't be less zero.");
+        }
     }
 
     public function setId(int $value): void
