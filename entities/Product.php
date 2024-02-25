@@ -61,7 +61,7 @@ class Product extends ActiveRecord
         $value = $this->$attribute;
         try {
             $valueDec = new Decimal($value);
-        } catch (TypeError|DomainException $e) {
+        } catch (TypeError | DomainException $e) {
             $this->addError($attribute, $e->getMessage());
             return;
         }

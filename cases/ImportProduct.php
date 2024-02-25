@@ -25,8 +25,7 @@ class ImportProduct
 
     public function __construct(
         CurrencyServiceInterface $currencyService
-    )
-    {
+    ) {
         $this->currencyService = $currencyService;
     }
 

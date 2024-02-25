@@ -18,5 +18,4 @@ class ProductCsvService implements ProductCsvServiceInterface
 
         return $csv->getRecords();
     }
-
 }

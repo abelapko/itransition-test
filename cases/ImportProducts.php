@@ -26,8 +26,7 @@ class ImportProducts
         ProductCsvServiceInterface $productCsvService,
         EventDispatcherInterface $dispatcher,
         ImportProduct $importer
-    )
-    {
+    ) {
         $this->productCsvService = $productCsvService;
         $this->dispatcher = $dispatcher;
         $this->importer = $importer;
@@ -51,7 +50,7 @@ class ImportProducts
             try {
                 // import
                 $product = $this->importer->exec($productCsv);
-            } catch (InvalidCsvProductException|InvalidArgumentException|DomainException|Exception $e) {
+            } catch (InvalidCsvProductException | InvalidArgumentException | DomainException | Exception $e) {
                 // notify about failed record
                 $this->dispatcher->dispatch(new ProductFailedImported($productCsv, $e));
                 // go to next record
@@ -66,11 +65,8 @@ class ImportProducts
                 // notify about skipped import
                 $this->dispatcher->dispatch(new ProductSkippedImport($productCsv));
             }
-
         }
 
         return $imported;
     }
-
-
 }

@@ -24,5 +24,4 @@ class DevController extends Controller
 
         return ExitCode::OK;
     }
-
 }

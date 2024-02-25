@@ -12,5 +12,4 @@ interface ProductCsvServiceInterface
      * @throws Exception
      */
     public function readFromCsv(string $path): Iterator;
-
 }

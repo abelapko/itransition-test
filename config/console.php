@@ -28,13 +28,13 @@ $config = [
                     'levels' => ['error', 'warning'],
                 ],
                 [
-					'class' => 'pahanini\log\ConsoleTarget',
+                    'class' => 'pahanini\log\ConsoleTarget',
                     'categories' => ['application'],
                     'color' => [
                         'warning' => BaseConsole::BG_YELLOW,
                         'error' => BaseConsole::BG_RED,
                     ]
-				],
+                ],
             ],
         ],
         'db' => $db,

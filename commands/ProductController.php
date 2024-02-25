@@ -81,5 +81,4 @@ class ProductController extends Controller
             return ExitCode::UNSPECIFIED_ERROR;
         }
     }
-
 }
