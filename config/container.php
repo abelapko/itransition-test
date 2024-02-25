@@ -6,6 +6,7 @@ use Yiisoft\EventDispatcher\Provider\Provider;
 
 return [
     'definitions' => [
+        'app\services\CurrencyServiceInterface' => 'app\services\CurrencyService',
         'app\services\ProductCsvServiceInterface' => 'app\services\ProductCsvService',
         'Psr\Log\LoggerInterface' => [
             'class' => 'alexeevdv\yii\PsrLoggerAdapter',
