@@ -12,6 +12,9 @@ services:
       - '8000:80'
     networks:
       - db
+    depends_on:
+      - db
+      - db-test
   db:
     image: mysql
     # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
