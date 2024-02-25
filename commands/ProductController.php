@@ -4,8 +4,8 @@ namespace app\commands;
 
 use app\cases\ImportProduct;
 use app\listeners\ImportResultCollector;
-use app\services\ProductCsvService;
 use app\cases\ImportProducts;
+use app\services\ProductCsvServiceInterface;
 use Exception;
 use Psr\Log\LoggerInterface;
 use Throwable;
@@ -55,25 +55,26 @@ class ProductController extends Controller
     public function actionImport(string $path = '/app/resources/stock.csv'): int
     {
         try {
+            // reporter for print results to console
             $reporter = Yii::createObject(ImportResultCollector::class);
-
+            // setup listeners and dispatcher
             $listeners = (new ListenerCollection())
                 ->add([$reporter, 'onSuccess'])
                 ->add([$reporter, 'onSkipped'])
                 ->add([$reporter, 'onFailed']);
             $dispatcher = new Dispatcher(new Provider($listeners));
-
+            // setup importer
             $importer = new ImportProducts(
-                new ProductCsvService(),
+                Yii::createObject(ProductCsvServiceInterface::class),
                 $dispatcher,
                 Yii::createObject(ImportProduct::class)
                     ->changeTestMode($this->test)
             );
-
+            // run import
             $importer->exec($path);
-
+            // print results
             $reporter->logReport();
-
+            // correct exit
             return $reporter->hasErrors() ? ExitCode::UNSPECIFIED_ERROR : ExitCode::OK;
         } catch (Throwable $e) {
             Yii::createObject(LoggerInterface::class)
