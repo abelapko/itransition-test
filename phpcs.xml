@@ -11,8 +11,17 @@
         <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
     </rule>
 
+    <file>cases</file>
     <file>config</file>
     <file>commands</file>
+    <file>dto</file>
+    <file>entities</file>
+    <file>events</file>
+    <file>exceptions</file>
+    <file>listeners</file>
+    <file>migrations</file>
+    <file>models</file>
+    <file>services</file>
     <file>web</file>
 
     <exclude-pattern>config/__autocomplete.php</exclude-pattern>
