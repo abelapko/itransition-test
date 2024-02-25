@@ -1,0 +1,14 @@
+Product Code,Product Name,Product Description,Stock,Cost in GBP,Discontinued
+P0002,Clonned Product 2,Clonned Product 2 Description,40,699.99,
+P0005,Invalid Product With More Fields,Description,20,20.00,yes,other field 1,other field 2
+,,,,,
+P0006,Correct Product 4 With Special Chars: !@#$%^&*()_+-`'\/.><?[],Correct Discontinued Product 4 Description,20,399.99,
+P0007,Correct Product 5 With Russion Chats: Продукт на русском,Correct Discontinued Product 5 Description,20,399.99,
+P0008,Correct Product 6 With Chinese Chats: 产品名称,Correct Discontinued Product 6 Description,20,399.99,
+P0009,Correct Product 7 With Chinese Emoji: 😉🤖😜💟🈶,Correct Discontinued Product 7 Description,20,399.99,
+P0010,Invalid Product Without All Fields,
+P0011,Invalid Product With Invalid Cost,Description,20,invalid,
+,Invalid Product With Empty Code,Description,20,399.99,
+P0012,Invalid Product With Invalid Stock,Description,invalid,399.99,
+P0013,Invalid Product With Invalid Discontinued,Description,20,399.99,invalid
+P0014,Invalid Product With Empty Description,,20,399.99,
