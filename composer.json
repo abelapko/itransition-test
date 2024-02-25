@@ -12,6 +12,7 @@
         "irc": "ircs://irc.libera.chat:6697/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
+    "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.4.0",
@@ -19,7 +20,16 @@
         "yiisoft/yii2-bootstrap5": "~2.0.2",
         "yiisoft/yii2-symfonymailer": "~2.0.3",
         "ext-json": "*",
-        "vlucas/phpdotenv": "^5.6@dev"
+        "vlucas/phpdotenv": "^5.6@dev",
+        "php-decimal/php-decimal": "dev-master",
+        "league/csv": "^9.0",
+        "webmozart/assert": "^1.11",
+        "psr/event-dispatcher": "1.0.0",
+        "yiisoft/event-dispatcher": "^1.0",
+        "alexeevdv/yii2-psr-log-adapter": "dev-master",
+        "pahanini/yii2-consolelog": "dev-master",
+        "codedungeon/php-cli-colors": "~1.0",
+        "drandin/exchange-rate": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

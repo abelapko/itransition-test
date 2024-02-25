@@ -5,6 +5,7 @@ $dotenv->load();
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/test_db.php';
+$container = require __DIR__ . '/container.php';
 
 /**
  * Application configuration shared by all test types
@@ -17,6 +18,7 @@ return [
         '@npm'   => '@vendor/npm-asset',
     ],
     'language' => 'en-US',
+    'container' => $container,
     'components' => [
         'db' => $db,
         'urlManager' => [

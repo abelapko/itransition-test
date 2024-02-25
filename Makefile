@@ -1,6 +1,7 @@
-init-up: build init up
-init: init-config init-app wait-db migrate-up
+init-up: init up
+init: dos2unix-fix build init-config init-app wait-db migrate-up
 restart: down up
+clear-db: migrate-reset
 
 init-app:
 	docker-compose run --rm php composer install
@@ -34,7 +35,7 @@ lint-fix:
 
 # recursively removes windows related stuff
 dos2unix-fix:
-	docker-compose run --rm php find . -type f -exec dos2unix {} \;
+	docker-compose run --rm php find . -not \( -path ./vendor -prune \) -type f -exec dos2unix {} \;
 
 migrate-up: migrate-up-app migrate-up-tests
 

@@ -1,7 +1,10 @@
 <?php
 
+use yii\helpers\BaseConsole;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$container = require __DIR__ . '/container.php';
 
 $config = [
     'id' => 'basic-console',
@@ -13,6 +16,7 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
         '@tests' => '@app/tests',
     ],
+    'container' => $container,
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -22,6 +26,14 @@ $config = [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                ],
+                [
+                    'class' => 'pahanini\log\ConsoleTarget',
+                    'categories' => ['application'],
+                    'color' => [
+                        'warning' => BaseConsole::BG_YELLOW,
+                        'error' => BaseConsole::BG_RED,
+                    ]
                 ],
             ],
         ],
