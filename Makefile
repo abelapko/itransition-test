@@ -32,6 +32,7 @@ lint:
 lint-fix:
 	docker-compose run --rm php composer run cs-fix
 
+# recursively removes windows related stuff
 dos2unix-fix:
 	docker-compose run --rm php find . -type f -exec dos2unix {} \;
 
