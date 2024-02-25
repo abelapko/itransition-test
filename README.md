@@ -1,3 +1,8 @@
+## Requirement
+- docker
+- docker-compose
+- Make
+
 ## Install
 
 1. `make init`
@@ -13,7 +18,11 @@
 
 and edit `.env` file.
 
-## Requirement
-- docker
-- docker-compose
-- Make
+## DB manager
+
+You can view DB changes.
+
+Go to:
+`http://localhost:8080/?server=db&username=root&db=importTest`
+
+Default password: `example`
