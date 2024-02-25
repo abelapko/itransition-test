@@ -4,17 +4,24 @@ namespace app\tests\unit\cases;
 
 use app\cases\ImportProduct;
 use app\dto\ProductCsv;
+use app\services\CurrencyService;
+use app\services\CurrencyServiceInterface;
+use Closure;
+use Decimal\Decimal;
 use DomainException;
+use InvalidArgumentException;
 use Yii;
 
 class ImportProductTest extends \Codeception\Test\Unit
 {
+    const RATE_USD_TO_GBP_MOCKED = "0.79";
+
     /**
      * @dataProvider productsProvider
      */
     public function testImport(array $productData, bool $expectedImport, ?string $exceptionExpected)
     {
-        $model = Yii::createObject(ImportProduct::class);
+        $model = new ImportProduct($this->getCurrencyService());
 
         if ($exceptionExpected) {
             $this->expectException($exceptionExpected);
@@ -27,7 +34,7 @@ class ImportProductTest extends \Codeception\Test\Unit
 
     public function testImportDiscontinuedProduct()
     {
-        $model = Yii::createObject(ImportProduct::class);
+        $model = new ImportProduct($this->getCurrencyService());
 
         $product = $model->exec(new ProductCsv([
             'code' => 'P00001',
@@ -44,7 +51,8 @@ class ImportProductTest extends \Codeception\Test\Unit
 
     public function testImportTestModeEnabled()
     {
-        $model = new ImportProduct(true);
+        $model = (new ImportProduct($this->getCurrencyService()))
+            ->changeTestMode(true);
 
         $product = $model->exec(new ProductCsv([
             'code' => 'P00001',
@@ -61,7 +69,8 @@ class ImportProductTest extends \Codeception\Test\Unit
 
     public function testImportTestModeDisabled()
     {
-        $model = new ImportProduct(false);
+        $model = (new ImportProduct($this->getCurrencyService()))
+            ->changeTestMode(false);
 
         $product = $model->exec(new ProductCsv([
             'code' => 'P00001',
@@ -78,7 +87,7 @@ class ImportProductTest extends \Codeception\Test\Unit
 
     public function testImportAgain()
     {
-        $model = Yii::createObject(ImportProduct::class);
+        $model = new ImportProduct($this->getCurrencyService());
 
         $product = new ProductCsv([
             'code' => 'P00001',
@@ -179,7 +188,7 @@ class ImportProductTest extends \Codeception\Test\Unit
                     'name' => 'Product Name',
                     'description' => 'Product Description',
                     'stock' => '9',
-                    'cost' => '4.99',
+                    'cost' => (string) (4.95 * self::RATE_USD_TO_GBP_MOCKED),
                     'discontinued' => '',
                 ],
                 false,
@@ -198,5 +207,22 @@ class ImportProductTest extends \Codeception\Test\Unit
                 'exceptionExpected' => null,
             ],
         ];
+    }
+
+    private function getCurrencyService(): CurrencyServiceInterface
+    {
+        return $this->make(
+            CurrencyService::class,
+            ['convert' => Closure::fromCallable([self::class, 'convertMocked'])]
+        );
+    }
+
+    private static function convertMocked(string $from, string $to, Decimal $value): Decimal
+    {
+        if ($from === 'USD' && $to === 'GBP') {
+           return (new Decimal($value))->mul(self::RATE_USD_TO_GBP_MOCKED);
+        }
+
+        throw new InvalidArgumentException();
     }
 }
