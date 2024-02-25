@@ -17,6 +17,9 @@ down:
 down-v:
 	docker-compose down -v
 
+build:
+	docker-compose build
+
 test:
 	docker-compose run --rm php composer run tests
 
