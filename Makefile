@@ -22,6 +22,12 @@ test:
 cli:
 	docker-compose run --rm php bash
 
+lint:
+	docker-compose run --rm php composer run cs-check
+
+lint-fix:
+	docker-compose run --rm php composer run cs-fix
+
 migrate-up: migrate-up-app migrate-up-tests
 
 migrate-down: migrate-down-app migrate-down-tests
