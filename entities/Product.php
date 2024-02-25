@@ -15,7 +15,7 @@ use Decimal\Decimal;
  * @property string $code
  * @property DateTime|null $discontinuedDate in timezone UTC
  * @property int $stockLevel
- * @property Decimal $price
+ * @property Decimal $price in GBP currency
  *
  * @property-read int|null intProductDataId null if record didn't save to DB yet
  * @property-read string strProductName
@@ -24,7 +24,7 @@ use Decimal\Decimal;
  * @property-read string|null dtmAdded in timezone UTC
  * @property-read string|null dtmDiscontinued
  * @property-read int intStockLevel
- * @property-read string decPrice
+ * @property-read string decPrice in GBP currency
  */
 class Product extends ActiveRecord
 {

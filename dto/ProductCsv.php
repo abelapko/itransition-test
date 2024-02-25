@@ -22,6 +22,9 @@ class ProductCsv extends Model
 
     public $stock;
 
+    /**
+     * in GBP currency
+     */
     public $cost;
 
     public $discontinued;
