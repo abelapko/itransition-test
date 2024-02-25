@@ -1,6 +1,6 @@
 ## About
 
-Solution implementation for [Candidate Development Test](./resources/PHP-task.docx)
+Solution implementation for [Candidate Development Test](./resources/PHP-task.pdf)
 
 Description of solution written in [Architectural solutions notes](#architectural-solutions-notes).
 
