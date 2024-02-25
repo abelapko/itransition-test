@@ -63,6 +63,10 @@ Clone repo:
 
 `git clone -b feature/test-implementation https://github.com/abelapko/itransition-test.git`
 
+Go to dir:
+
+`cd itransition-test`
+
 Init and run app:
 
 `make init-up`
@@ -77,13 +81,22 @@ Get command help info:
 
 `yii help product/import`
 
+Run import in Test mode:
+
+`yii product/import ./resources/stock.csv -t=1`
+
 Run import product:
 
 `yii product/import ./resources/stock.csv`
 
-Run import in Test mode:
+## Developer guide
 
-`yii product/import ./resources/stock.csv -t=1`
+Make commands:
+
+ - `make test` - run tests
+ - `make lint-fix` - use lint
+ - `make clear-db` - clear database
+ - see more commands in [Makefile](./Makefile)
 
 ## Configuration
 
@@ -95,7 +108,6 @@ and edit `.env` file.
 
 You can view DB changes.
 
-Go to:
-`http://localhost:8080/?server=db&username=root&db=importTest`
+For it go to: <a>http://localhost:8080/?server=db&username=root&db=importTest</a>
 
-Default password: `example`
+Entry default password: `example`

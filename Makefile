@@ -1,6 +1,7 @@
 init-up: init up
 init: init-config init-app wait-db migrate-up
 restart: down up
+clear-db: migrate-reset
 
 init-app:
 	docker-compose run --rm php composer install
