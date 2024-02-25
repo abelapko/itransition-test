@@ -20,7 +20,6 @@
     <file>exceptions</file>
     <file>listeners</file>
     <file>migrations</file>
-    <file>models</file>
     <file>services</file>
     <file>web</file>
 
