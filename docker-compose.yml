@@ -8,6 +8,7 @@ services:
     environment:
       PHP_ENABLE_XDEBUG: ${PHP_ENABLE_XDEBUG}
       PHP_IDE_CONFIG: serverName=localhost
+      WAIT_HOSTS: db:3306, db-test:3306
     ports:
       - '8000:80'
     networks:
@@ -37,6 +38,17 @@ services:
       MYSQL_ROOT_PASSWORD: example
     ports:
       - ${MYSQL_PORT_EXTERNAL_TEST:-3302}:3306
+    networks:
+      - db
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      ADMINER_DEFAULT_DB_HOST: db
+      ADMINER_DEFAULT_SERVER: db
+      ADMINER_DEFAULT_DB_NAME: ${MYSQL_DATABASE}
     networks:
       - db
 networks:

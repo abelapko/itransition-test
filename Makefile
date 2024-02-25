@@ -1,11 +1,12 @@
-init: init-config init-app
+init-up: init up
+init: init-config init-app wait-db migrate-up
 restart: down up
 
 init-app:
 	docker-compose run --rm php composer install
 
 init-config:
-	cp .env.tpl .env
+	docker-compose run --rm --no-deps php cp .env.tpl .env
 
 up:
 	docker-compose up -d
@@ -33,6 +34,9 @@ migrate-up: migrate-up-app migrate-up-tests
 migrate-down: migrate-down-app migrate-down-tests
 
 migrate-reset: migrate-down migrate-up
+
+wait-db:
+	docker-compose run --rm php /wait
 
 migrate-up-app:
 	docker-compose run --rm php yii migrate --interactive=0
