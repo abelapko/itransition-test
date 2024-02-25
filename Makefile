@@ -1,4 +1,4 @@
-init-up: init up
+init-up: build init up
 init: init-config init-app wait-db migrate-up
 restart: down up
 clear-db: migrate-reset
@@ -18,6 +18,9 @@ down:
 down-v:
 	docker-compose down -v
 
+build:
+	docker-compose build
+
 test:
 	docker-compose run --rm php composer run tests
 
@@ -29,6 +32,10 @@ lint:
 
 lint-fix:
 	docker-compose run --rm php composer run cs-fix
+
+# recursively removes windows related stuff
+dos2unix-fix:
+	docker-compose run --rm php find . -type f -exec dos2unix {} \;
 
 migrate-up: migrate-up-app migrate-up-tests
 

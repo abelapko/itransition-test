@@ -11,6 +11,7 @@ services:
       PHP_ENABLE_XDEBUG: ${PHP_ENABLE_XDEBUG}
       PHP_IDE_CONFIG: serverName=localhost
       WAIT_HOSTS: db:3306, db-test:3306
+      WAIT_TIMEOUT: 120
     ports:
       - '8000:80'
     networks:
