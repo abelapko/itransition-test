@@ -1,11 +1,12 @@
-init: init-config init-app
+init-up: init up
+init: init-config init-app wait-db migrate-up
 restart: down up
 
 init-app:
 	docker-compose run --rm php composer install
 
 init-config:
-	cp .env.tpl .env
+	docker-compose run --rm --no-deps php cp .env.tpl .env
 
 up:
 	docker-compose up -d
