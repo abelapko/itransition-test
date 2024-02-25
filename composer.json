@@ -31,7 +31,8 @@
         "codeception/module-yii2": "^1.1",
         "codeception/module-filesystem": "^3.0 || ^2.0 || ^1.1",
         "codeception/verify": "^3.0 || ^2.2",
-        "symfony/browser-kit": "^6.0 || >=2.7 <=4.2.4"
+        "symfony/browser-kit": "^6.0 || >=2.7 <=4.2.4",
+        "squizlabs/php_codesniffer": "*"
     },
     "config": {
         "allow-plugins": {
@@ -50,7 +51,9 @@
             "yii\\composer\\Installer::postCreateProject",
             "yii\\composer\\Installer::postInstall"
         ],
-        "tests": "vendor/bin/codecept run"
+        "tests": "vendor/bin/codecept run",
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf"
     },
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
