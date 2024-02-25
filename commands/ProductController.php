@@ -7,12 +7,15 @@ use app\listeners\ImportResultCollector;
 use app\services\ProductCsvService;
 use app\cases\ImportProducts;
 use Exception;
+use Psr\Log\LoggerInterface;
+use Throwable;
 use Yii;
 use yii\console\Controller;
 use yii\console\ExitCode;
 use Yiisoft\EventDispatcher\Dispatcher\Dispatcher;
 use Yiisoft\EventDispatcher\Provider\ListenerCollection;
 use Yiisoft\EventDispatcher\Provider\Provider;
+use Codedungeon\PHPCliColors\Color as C;
 
 class ProductController extends Controller
 {
@@ -51,25 +54,31 @@ class ProductController extends Controller
      */
     public function actionImport(string $path = '/app/resources/stock.csv'): int
     {
-        $reporter = Yii::createObject(ImportResultCollector::class);
+        try {
+            $reporter = Yii::createObject(ImportResultCollector::class);
 
-        $listeners = (new ListenerCollection())
-            ->add([$reporter, 'onSuccess'])
-            ->add([$reporter, 'onSkipped'])
-            ->add([$reporter, 'onFailed']);
-        $dispatcher = new Dispatcher(new Provider($listeners));
+            $listeners = (new ListenerCollection())
+                ->add([$reporter, 'onSuccess'])
+                ->add([$reporter, 'onSkipped'])
+                ->add([$reporter, 'onFailed']);
+            $dispatcher = new Dispatcher(new Provider($listeners));
 
-        $importer = new ImportProducts(
-            new ProductCsvService(),
-            $dispatcher,
-            new ImportProduct($this->test)
-        );
+            $importer = new ImportProducts(
+                new ProductCsvService(),
+                $dispatcher,
+                new ImportProduct($this->test)
+            );
 
-        $importer->exec($path);
+            $importer->exec($path);
 
-        $reporter->logReport();
+            $reporter->logReport();
 
-        return $reporter->hasErrors() ? ExitCode::UNSPECIFIED_ERROR : ExitCode::OK;
+            return $reporter->hasErrors() ? ExitCode::UNSPECIFIED_ERROR : ExitCode::OK;
+        } catch (Throwable $e) {
+            Yii::createObject(LoggerInterface::class)
+                ->error(C::BG_RED . $e->getMessage() . C::RESET);
+            return ExitCode::UNSPECIFIED_ERROR;
+        }
     }
 
 }
