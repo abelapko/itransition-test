@@ -5,6 +5,7 @@ namespace app\cases;
 use app\dto\ProductCsv;
 use app\entities\Product;
 use app\exceptions\InvalidCsvProductException;
+use DateTimeZone;
 use Decimal\Decimal;
 use DomainException;
 use Exception;
@@ -86,7 +87,9 @@ class ImportProduct
         $product->name = $productCsv->name;
         $product->description = $productCsv->description;
         $product->code = $productCsv->code;
-        $product->discontinuedDate = $productCsv->isDiscontinued() ? date_create() : null;
+        $product->discontinuedDate = $productCsv->isDiscontinued()
+            ? date_create('now', new DateTimeZone('UTC'))
+            : null;
         $product->stockLevel = $productCsv->stock;
         $product->price = new Decimal($productCsv->cost);
 

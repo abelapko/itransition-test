@@ -16,7 +16,7 @@ class m240221_153040_initial extends Migration
               strProductName varchar(50) NOT NULL,
               strProductDesc varchar(255) NOT NULL,
               strProductCode varchar(10) NOT NULL,
-              dtmAdded datetime DEFAULT NULL,
+              dtmAdded datetime DEFAULT NULL COMMENT 'in timezone UTC',
               dtmDiscontinued datetime DEFAULT NULL,
               stmTimestamp timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
               PRIMARY KEY (intProductDataId),

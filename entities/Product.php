@@ -3,6 +3,7 @@
 namespace app\entities;
 
 use DateTime;
+use DateTimeZone;
 use DomainException;
 use TypeError;
 use yii\db\ActiveRecord;
@@ -12,7 +13,7 @@ use Decimal\Decimal;
  * @property string $name
  * @property string $description
  * @property string $code
- * @property DateTime|null $discontinuedDate
+ * @property DateTime|null $discontinuedDate in timezone UTC
  * @property int $stockLevel
  * @property Decimal $price
  *
@@ -20,7 +21,7 @@ use Decimal\Decimal;
  * @property-read string strProductName
  * @property-read string strProductDesc
  * @property-read string strProductCode
- * @property-read string|null dtmAdded
+ * @property-read string|null dtmAdded in timezone UTC
  * @property-read string|null dtmDiscontinued
  * @property-read int intStockLevel
  * @property-read string decPrice
@@ -123,7 +124,7 @@ class Product extends ActiveRecord
     public function getDiscontinuedDate(): ?DateTime
     {
         return $this->dtmDiscontinued
-            ? DateTime::createFromFormat('Y-m-d H:i:s', $this->dtmDiscontinued)
+            ? DateTime::createFromFormat('Y-m-d H:i:s', $this->dtmDiscontinued, new DateTimeZone('UTC'))
             : null;
     }
 
