@@ -66,7 +66,8 @@ class ProductController extends Controller
             $importer = new ImportProducts(
                 new ProductCsvService(),
                 $dispatcher,
-                new ImportProduct($this->test)
+                Yii::createObject(ImportProduct::class)
+                    ->changeTestMode($this->test)
             );
 
             $importer->exec($path);

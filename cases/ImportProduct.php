@@ -5,6 +5,7 @@ namespace app\cases;
 use app\dto\ProductCsv;
 use app\entities\Product;
 use app\exceptions\InvalidCsvProductException;
+use app\services\CurrencyServiceInterface;
 use DateTimeZone;
 use Decimal\Decimal;
 use DomainException;
@@ -15,16 +16,25 @@ class ImportProduct
 {
     const EXCEPTION_CODE_PRODUCT_ALREADY_EXIST = 1;
 
+    private CurrencyServiceInterface $currencyService;
+
     /**
      * whether Test mode enabled
      */
-    private bool $isTest;
+    private bool $isTest = false;
 
     public function __construct(
-        bool $isTest = false
+        CurrencyServiceInterface $currencyService
     )
     {
-        $this->isTest = $isTest;
+        $this->currencyService = $currencyService;
+    }
+
+    public function changeTestMode(bool $value): self
+    {
+        $self = clone $this;
+        $self->isTest = $value;
+        return $self;
     }
 
     /**
@@ -54,6 +64,32 @@ class ImportProduct
     }
 
     /**
+     * @return Decimal 5 USD in GBP
+     * @throws Exception
+     */
+    private function get5UsdInGbp(): Decimal
+    {
+        static $_5UsdInGbp;
+        if (!$_5UsdInGbp) {
+            $_5UsdInGbp = $this->currencyService->convert('USD', 'GBP', new Decimal(5));
+        }
+        return $_5UsdInGbp;
+    }
+
+    /**
+     * @return Decimal 1000 USD in GBP
+     * @throws Exception
+     */
+    private function get1000UsdInGbp(): Decimal
+    {
+        static $_1000UsdInGbp;
+        if (!$_1000UsdInGbp) {
+            $_1000UsdInGbp = $this->currencyService->convert('USD', 'GBP', new Decimal(1000));
+        }
+        return $_1000UsdInGbp;
+    }
+
+    /**
      * Validate CSV record
      * @throws InvalidCsvProductException
      */
@@ -66,14 +102,15 @@ class ImportProduct
 
     /**
      * @return bool whether product from csv complies with import rules
+     * @throws Exception
      */
-    private static function needImportProduct(ProductCsv $product): bool
+    private function needImportProduct(ProductCsv $product): bool
     {
-        if (new Decimal($product->cost) < new Decimal(5) && $product->stock < 10) {
+        if (new Decimal($product->cost) < $this->get5UsdInGbp() && $product->stock < 10) {
             return false;
         }
 
-        if (new Decimal($product->cost) > new Decimal(1000)) {
+        if (new Decimal($product->cost) > $this->get1000UsdInGbp()) {
             return false;
         }
 
