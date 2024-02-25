@@ -19,16 +19,6 @@ return [
     'language' => 'en-US',
     'components' => [
         'db' => $db,
-        'mailer' => [
-            'class' => \yii\symfonymailer\Mailer::class,
-            'viewPath' => '@app/mail',
-            // send all mails to a file by default.
-            'useFileTransport' => true,
-            'messageClass' => 'yii\symfonymailer\Message'
-        ],
-        'assetManager' => [
-            'basePath' => __DIR__ . '/../web/assets',
-        ],
         'urlManager' => [
             'showScriptName' => true,
         ],
