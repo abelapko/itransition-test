@@ -34,6 +34,9 @@ migrate-down: migrate-down-app migrate-down-tests
 
 migrate-reset: migrate-down migrate-up
 
+wait-db:
+	docker-compose run --rm php /wait
+
 migrate-up-app:
 	docker-compose run --rm php yii migrate --interactive=0
 
